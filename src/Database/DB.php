@@ -14,15 +14,15 @@ class DB{
         $database = self::DATABASE)
         {
             $this->mysqli = mysqli_connect(
-                hostname: $host,
-                username: $user,
-                password: $password,
-                database: $database);
+                $host,
+                $user,
+                $password,
+                $database);
 
             if (!$this->mysqli){
                 die("Connection failed: " . mysqli_connect_error());
             }
-            $this->mysqli->set_charset(charset: "utf8mb4");
+            $this->mysqli->set_charset("utf8mb4");
         }
 
         function __destruct(){
