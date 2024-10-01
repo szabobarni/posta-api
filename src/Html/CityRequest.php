@@ -2,7 +2,7 @@
 
 namespace App\Html;
 
-use App\Repositories\CountyRepository;
+use App\Repositories\CityRepository;
 
 
 class Request
@@ -33,10 +33,10 @@ class Request
     {
         $resource = self::getResourceName();
         switch ($resource) {
-            case 'counties':
+            case 'cities':
                 $data = self::getRequestData();
                 if (isset($data['name'])) {
-                    $db = new CountyRepository();
+                    $db = new CityRepository();
                     $newId = $db->create($data);
                     $code = 201;
                     if (!$newId) {
@@ -46,9 +46,9 @@ class Request
                 Response::response(['id' => $newId], $code);
                 break;
  /*           
-            case '/counties/county':
+            case '/cities/city':
                 if (isset($data['name'])) {
-                    $db = new CountyRepository();
+                    $db = new CityRepository();
                     if (isset($data['id'])) {
                         $entity = $db->update($data['id'], ['name' => $data['name']]);
                     }
@@ -68,8 +68,8 @@ class Request
     {
         $resourceName = self::getResourceName();
         switch ($resourceName) {
-            case 'counties':
-                $db = new CountyRepository();
+            case 'cities':
+                $db = new CityRepository();
                 $resourceId = self::getResourceId();
                 $code = 200;
                 if ($resourceId) {
@@ -90,7 +90,7 @@ class Request
                 $data = self::getRequestData();
                 if (isset($data['needle'])) {
                     $needle = $data['needle'];
-                    $db = new CountyRepository();
+                    $db = new CityRepository();
                     $entities = $db->findByName($needle);
                     $code = 200;
                     if (empty($entities)) {
@@ -116,9 +116,9 @@ class Request
         }
         $resourceName = self::getResourceName();
         switch ($resourceName) {
-            case 'counties':
+            case 'cities':
                 $code = 404;
-                $db = new CountyRepository();
+                $db = new CityRepository();
                 $result = $db->delete($id);
                 if ($result) {
                     $code = 204;
@@ -144,9 +144,9 @@ class Request
         }
         $resourceName = self::getResourceName();
         switch ($resourceName) {
-            case 'counties':
+            case 'cities':
                 $data = self::getRequestData();
-                $db = new CountyRepository();
+                $db = new CityRepository();
                 $entity = $db->find($id);
                 $code = 404;
                 if ($entity) {
