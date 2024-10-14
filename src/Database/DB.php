@@ -6,7 +6,7 @@ class DB
     const HOST = 'localhost';
     const USER = 'root';
     const PASSWORD = null;
-    const DATABASE = 'restapi';
+    const DATABASE = 'postoffice';
     protected $mysqli;
     function __construct(
         $host = self::HOST, 
