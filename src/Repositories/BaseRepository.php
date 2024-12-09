@@ -63,6 +63,13 @@ class BaseRepository extends DB // implements DBInterface
         return $this->mysqli
             ->query($query)->fetch_all(MYSQLI_ASSOC);
     }
+    public function getAllCity($county_id): array
+    {
+        $query = $this->select() . "WHERE id_county = $county_id ORDER BY city";
+
+        return $this->mysqli
+            ->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
 
     public function update(int $id, array $data)
     {        
